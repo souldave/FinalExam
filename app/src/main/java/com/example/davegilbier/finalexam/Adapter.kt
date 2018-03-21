@@ -7,7 +7,6 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.song_list.*
 import android.content.Context
 
 /**
@@ -17,10 +16,7 @@ class Adapter(
         private val mContext : Context,
         private val mAlbum: ArrayList<Album>) : RecyclerView.Adapter<Adapter.ViewHolder>() {
 
-    fun add(album: Album){
-        mAlbum.add(album)
-        notifyDataSetChanged()
-    }
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val album= mAlbum[position]
         holder.albumtxt.text = mAlbum[position].name

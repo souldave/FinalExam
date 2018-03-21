@@ -47,14 +47,13 @@
         android:text="@string/no_album"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etext" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="306dp"
-        android:layout_height="301dp"
+        android:layout_width="314dp"
+        android:layout_height="300dp"
         android:layout_marginBottom="40dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
@@ -67,23 +66,24 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="33dp"
         android:layout_height="35dp"
+        android:layout_marginLeft="24dp"
         android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
         android:visibility="gone"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etext"
-        android:layout_marginLeft="24dp" />
+        app:layout_constraintTop_toBottomOf="@+id/etext" />
 
     <Button
         android:id="@+id/button"
         android:layout_width="137dp"
         android:layout_height="37dp"
-        android:layout_marginBottom="24dp"
+        android:layout_marginBottom="32dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         android:text="@string/find"
         app:layout_constraintBottom_toTopOf="@+id/recyclerView"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.502"
         app:layout_constraintStart_toStartOf="parent"
         tools:ignore="MissingConstraints" />
 

@@ -6,12 +6,8 @@ import android.support.v7.widget.LinearLayoutManager
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
-import android.widget.ImageView
 import android.widget.LinearLayout
-import com.bumptech.glide.Glide
-import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_main.*
-import kotlinx.android.synthetic.main.song_list.*
 import okhttp3.*
 import org.json.JSONObject
 import java.io.IOException
@@ -40,7 +36,7 @@ class MainActivity : AppCompatActivity() {
         button.setOnClickListener({
             albumSearch = etext.text.toString()
             progressBar.visibility = View.VISIBLE
-            textView4.text= "Searching for $albumSearch..."
+            textView4.text = "Searching for $albumSearch..."
 
 
             val url = "http://ws.audioscrobbler.com/2.0/?method=album.search&album=$albumSearch&api_key=7ae483dae4b8aba5e56f65c156a51f8c&format=json"
@@ -75,20 +71,17 @@ class MainActivity : AppCompatActivity() {
 
     private fun displayAlbum(json: String?) {
 
-        runOnUiThread{
+        runOnUiThread {
             var lengthalbum = JSONObject(json).getJSONObject("results").getJSONObject("albummatches").getJSONArray("album").length()
             Log.e("Final Exam", "$lengthalbum")
-            val gson = GsonBuilder().create()
-            val album = gson.fromJson(json, Album::class.java)
             val albumlist = ArrayList<Album>()
-            for (i in 1..lengthalbum){
+            for (i in 1..lengthalbum) {
                 Log.e("Final Exam", "$counter")
-
-                textView3.text= getString(R.string.results_below)
+                textView3.text = getString(R.string.results_below)
                 var albumtext = JSONObject(json).getJSONObject("results").getJSONObject("albummatches").getJSONArray("album").getJSONObject(counter).getString("name")
                 var artisttext = JSONObject(json).getJSONObject("results").getJSONObject("albummatches").getJSONArray("album").getJSONObject(counter).getString("artist")
                 var imgName = JSONObject(json).getJSONObject("results").getJSONObject("albummatches").getJSONArray("album").getJSONObject(counter).getJSONArray("image").getJSONObject(2).getString("#text")
-                recyclerView.adapter= Adapter(this@MainActivity, albumlist)
+                recyclerView.adapter = Adapter(this@MainActivity, albumlist)
                 albumlist.add(Album(albumtext, artisttext, imgName))
                 counter++
                 Log.e("Final Exam", "$counter")
@@ -97,21 +90,21 @@ class MainActivity : AppCompatActivity() {
             recyclerView.layoutManager = LinearLayoutManager(this)
 
 
-
-           // if (albumSearch == album.name || albumSearch == album.artist){
-             //   album_txt.text = album.name
-               // artist_txt.text= album.artist
-                //Glide.with(this@MainActivity).load(album.image.text).into(album_img)
-                //progressBar.visibility = View.GONE
-                //textView4.text= getString(R.string.ALBUM_FOUND)
-                //val adapter = Adapter(abilitylist)
-                //recyclerView.adapter = adapter
+            // if (albumSearch == album.name || albumSearch == album.artist){
+            //   album_txt.text = album.name
+            // artist_txt.text= album.artist
+            //Glide.with(this@MainActivity).load(album.image.text).into(album_img)
+            //progressBar.visibility = View.GONE
+            //textView4.text= getString(R.string.ALBUM_FOUND)
+            //val adapter = Adapter(abilitylist)
+            //recyclerView.adapter = adapter
 
             //} else {
             //    textView4.text = getString(R.string.album_nfound)
             //}
 
-        }}
-
+        }
     }
+
+}
 
