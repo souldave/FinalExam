@@ -6,10 +6,9 @@ import com.google.gson.annotations.SerializedName
  * Created by Dave Gilbier on 21/03/2018.
  */
 data class Album (
-        val name: String,
-        val artist: String,
-        val image: text
-
+        var name: String,
+        var artist: String,
+        var image: String
 )
 
-data class text (@SerializedName("#text") val text: String)
+//data class text (@SerializedName("#text") val text: String)

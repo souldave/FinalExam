@@ -13,6 +13,7 @@ import com.google.gson.GsonBuilder
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.song_list.*
 import okhttp3.*
+import org.json.JSONObject
 import java.io.IOException
 import java.util.concurrent.TimeUnit
 
@@ -20,6 +21,8 @@ import java.util.concurrent.TimeUnit
 class MainActivity : AppCompatActivity() {
 
     private var albumSearch: String? = null
+    private var counter = 0
+
     private lateinit var mAdapter: Adapter
 
 
@@ -28,6 +31,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
+        mAdapter = Adapter(this, ArrayList())
 
         val recyclerView = findViewById<RecyclerView>(R.id.recyclerView)
 
@@ -74,25 +78,41 @@ class MainActivity : AppCompatActivity() {
     private fun displayAlbum(json: String?) {
 
         runOnUiThread{
+            var lengthalbum = JSONObject(json).getJSONObject("results").getJSONObject("albummatches").getJSONArray("album").length()
             val gson = GsonBuilder().create()
             val album = gson.fromJson(json, Album::class.java)
-            mAdapter.add(album)
-
-
-            if (albumSearch == album.name || albumSearch == album.artist){
-                album_txt.text = album.name
-                artist_txt.text= album.artist
-                Glide.with(this@MainActivity).load(album.image.text).into(album_img)
-                progressBar.visibility = View.GONE
-                textView4.text= getString(R.string.ALBUM_FOUND)
-
-            } else {
-                textView4.text = getString(R.string.album_nfound)
+            val albumlist = ArrayList<Album>()
+            for (i in 1..lengthalbum){
+                var albumtext = JSONObject(json).getJSONObject("results").getJSONObject("albummatches").getJSONArray("album").getJSONObject(counter).getString("name")
+                album.name= albumtext
+                var artisttext = JSONObject(json).getJSONObject("results").getJSONObject("albummatches").getJSONArray("album").getJSONObject(counter).getString("artist")
+                album.artist= artisttext
+                var imgName = JSONObject(json).getJSONObject("results").getJSONObject("albummatches").getJSONArray("album").getJSONObject(counter).getJSONArray("image").getJSONObject(2).getString("#text")
+                album.image= imgName
+                albumlist.add(Album(albumtext, artisttext, imgName))
+                val mAdapter = Adapter(this, ArrayList())
+                mAdapter.add(album)
+                recyclerView.adapter= mAdapter
+                counter++
             }
 
-        }
+
+
+
+           // if (albumSearch == album.name || albumSearch == album.artist){
+             //   album_txt.text = album.name
+               // artist_txt.text= album.artist
+                //Glide.with(this@MainActivity).load(album.image.text).into(album_img)
+                //progressBar.visibility = View.GONE
+                //textView4.text= getString(R.string.ALBUM_FOUND)
+                //val adapter = Adapter(abilitylist)
+                //recyclerView.adapter = adapter
+
+            //} else {
+            //    textView4.text = getString(R.string.album_nfound)
+            //}
+
+        }}
 
     }
 
-
-}

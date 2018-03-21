@@ -22,12 +22,15 @@ class Adapter(
         notifyDataSetChanged()
     }
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
+        val album= mAlbum[position]
         holder.albumtxt.text = mAlbum[position].name
         holder.artisttxt.text = mAlbum[position].artist
+        Glide.with(mContext).load(album.image).into(holder.albumimg)
+
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
-        val v = LayoutInflater.from(mContext).inflate(R.layout.song_list, parent, false)
+        val v = LayoutInflater.from(parent?.context).inflate(R.layout.song_list, parent, false)
         return ViewHolder(v)
     }
 
