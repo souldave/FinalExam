@@ -3,4 +3,8 @@
     <string name="search" />
     <string name="search_album">Search Album</string>
     <string name="no_album">There\'s no album present at this moment.</string>
+    <string name="find">FIND NOW!</string>
+    <string name="album_not_found">Album not found!</string>
+    <string name="ALBUM_FOUND">ALBUM FOUND!</string>
+    <string name="album_nfound">ALBUM NOT FOUND</string>
 </resources>

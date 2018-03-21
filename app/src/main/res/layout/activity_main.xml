@@ -45,17 +45,17 @@
         android:layout_marginStart="8dp"
         android:layout_marginTop="8dp"
         android:text="@string/no_album"
-        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.6"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/etext"
-        app:layout_constraintVertical_bias="0.842" />
+        app:layout_constraintTop_toBottomOf="@+id/etext" />
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="315dp"
-        android:layout_height="333dp"
-        android:layout_marginBottom="8dp"
+        android:layout_width="306dp"
+        android:layout_height="301dp"
+        android:layout_marginBottom="40dp"
         android:layout_marginEnd="8dp"
         android:layout_marginStart="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -67,9 +67,33 @@
         style="?android:attr/progressBarStyle"
         android:layout_width="33dp"
         android:layout_height="35dp"
+        android:layout_marginStart="24dp"
         android:layout_marginTop="12dp"
+        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/etext"
-        tools:layout_editor_absoluteX="176dp" />
+        android:layout_marginLeft="24dp" />
+
+    <Button
+        android:id="@+id/button"
+        android:layout_width="137dp"
+        android:layout_height="37dp"
+        android:layout_marginBottom="24dp"
+        android:text="@string/find"
+        app:layout_constraintBottom_toTopOf="@+id/recyclerView"
+        tools:layout_editor_absoluteX="128dp"
+        tools:ignore="MissingConstraints" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="8dp"
+        android:layout_marginEnd="8dp"
+        android:layout_marginStart="8dp"
+        android:text="TextView"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
 
 </android.support.constraint.ConstraintLayout>
