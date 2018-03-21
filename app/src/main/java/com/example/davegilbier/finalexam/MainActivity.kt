@@ -40,6 +40,7 @@ class MainActivity : AppCompatActivity() {
 
 
             val url = "http://ws.audioscrobbler.com/2.0/?method=album.search&album=$albumSearch&api_key=7ae483dae4b8aba5e56f65c156a51f8c&format=json"
+
             val request = Request.Builder().url(url).build()
             val client = OkHttpClient.Builder()
                     .connectTimeout(60, TimeUnit.SECONDS)
