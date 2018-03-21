@@ -7,4 +7,5 @@
     <string name="album_not_found">Album not found!</string>
     <string name="ALBUM_FOUND">ALBUM FOUND!</string>
     <string name="album_nfound">ALBUM NOT FOUND</string>
+    <string name="results_below">Results are below!</string>
 </resources>

@@ -67,35 +67,34 @@ class MainActivity : AppCompatActivity() {
                     }
                 }
             })
-
-
-
-
         }
         )
+        recyclerView.layoutManager = LinearLayoutManager(this)
+
     }
 
     private fun displayAlbum(json: String?) {
 
         runOnUiThread{
             var lengthalbum = JSONObject(json).getJSONObject("results").getJSONObject("albummatches").getJSONArray("album").length()
+            Log.e("Final Exam", "$lengthalbum")
             val gson = GsonBuilder().create()
             val album = gson.fromJson(json, Album::class.java)
             val albumlist = ArrayList<Album>()
             for (i in 1..lengthalbum){
+                Log.e("Final Exam", "$counter")
+
+                textView3.text= getString(R.string.results_below)
                 var albumtext = JSONObject(json).getJSONObject("results").getJSONObject("albummatches").getJSONArray("album").getJSONObject(counter).getString("name")
-                album.name= albumtext
                 var artisttext = JSONObject(json).getJSONObject("results").getJSONObject("albummatches").getJSONArray("album").getJSONObject(counter).getString("artist")
-                album.artist= artisttext
                 var imgName = JSONObject(json).getJSONObject("results").getJSONObject("albummatches").getJSONArray("album").getJSONObject(counter).getJSONArray("image").getJSONObject(2).getString("#text")
-                album.image= imgName
+                recyclerView.adapter= Adapter(this@MainActivity, albumlist)
                 albumlist.add(Album(albumtext, artisttext, imgName))
-                val mAdapter = Adapter(this, ArrayList())
-                mAdapter.add(album)
-                recyclerView.adapter= mAdapter
                 counter++
+                Log.e("Final Exam", "$counter")
             }
 
+            recyclerView.layoutManager = LinearLayoutManager(this)
 
 
 
